@@ -1,6 +1,5 @@
 package com.bsoft.arealeaderapp.ui.base;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -29,15 +28,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         //添加activity到活动管理器中
         ActivityPageManager.getInstance().addActivity(this);
 
-        // 设置不能横屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        // 设置横屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         setContentView(provideContentViewId());
         ButterKnife.bind(this);
         Logger.addLogAdapter(new AndroidLogAdapter());
         Logger.i("日志插件初始化");
 
-        initData();
+        initArgs();
         initView();
         initListener();
     }
@@ -48,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract int provideContentViewId();
 
-    public void initData() {
+    public void initArgs() {
     }
 
     public void initView() {
